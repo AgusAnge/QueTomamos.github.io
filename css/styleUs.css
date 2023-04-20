@@ -1,76 +1,103 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    user-select: none;
 }
+
 html {
     background-color: black;
     color: #dff2b0;
 }
+
 .gridLayout {
     display: grid;
     height: 100vh;
-    width: 90%;
-    grid-gap: 20px;
-    padding: 10px;
+    width: 100%;
+    gap: 0;
+    padding: 0 10px;
     justify-content: stretch;
-    grid-template-areas: 
-                        "header header"
-                        "about about"
-                        "contact ubication"
-                        "footer footer";
-    grid-template-rows: 30% auto auto 10%;
+    grid-template-areas:
+        "gridHeader gridHeader"
+        "about about"
+        "contact ubication"
+        "footer footer";
+    grid-template-rows: 1fr auto auto 0.5fr;
+    grid-template-columns: repeat(2, .5fr);
 }
 
-#header{
+
+.gridHeader {
+    grid-area: gridHeader;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "header header header header"
+        "navBar navBar navBar navBar";
+    grid-template-rows: 2fr .3fr;
+}
+
+#header {
     grid-area: header;
-    background-color: black;
+    font-size: 30px;
+    width: 100%;
+    padding: 0 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #header h1 {
     font-family: 'Lobster', cursive;
-    text-rendering: optimizeSpeed;
-    font-size: 40px;
-    width: 9.375rem;
-    margin: 0.9375rem auto;
-    padding: 0.75rem;
     cursor: pointer;
+    opacity: 1;
+    width: 25vw;
+    padding: 0 5vw;
+    margin: auto;
 }
 
-#header .navegacionPagina {
+.navBar {
+    grid-area: navBar;
     display: flex;
-    font-size: 22.5px;
+    flex-direction: row;
     justify-content: space-evenly;
-    align-content: flex-start;
-    padding-bottom: 1rem;
+    width: 100vw;
+    height: 80%;
+    align-items: center;
+    font-size: 25px;
 }
 
-#header .navegacionPagina a {
+.navBar a {
     font-family: 'Shrikhand', cursive;
     text-decoration: none;
-    margin: 2rem;
-    transition: 0.2s ease;
+    padding: 10px 15px;
+    transition: 0.4s;
+    opacity: 0.5;
 }
 
-#header nav a:link {
+.navBar a:visited,
+.navBar a:active,
+.navBar a:link {
     color: #dff2b0;
 }
 
-#header nav a:visited {
-    color: #dff2b0;
+.navBar a:hover {
+    border-radius: 10px;
+    padding: 0px 20px;
+    font-size: 30px;
+    opacity: 1;
+    text-shadow: 0px 0px 8px #333;
+    border-bottom: 1px solid #333333a5;
+    border-top: 1px solid #333333a5;
 }
 
-#header nav a:hover {
-    color: rgb(248, 250, 115);
-    
-}
-
-#header nav a:active {
-    color: rgb(235, 203, 97);
-}
-
-#aboutUs{
+#aboutUs {
     margin: 0.9375rem 6.875rem 0.9375rem 1.875rem;
-    width: 88%;
+    width: 92%;
     grid-area: about;
     padding: 0.9375rem 3.125rem;
     text-align: center;
@@ -83,12 +110,19 @@ html {
     font-family: 'Lobster', cursive;
     font-size: 32px;
     border-bottom: 1px solid #dff2b014;
+    opacity: .8;
 }
 
 #aboutUs p {
     padding-top: 30px;
     font-family: sans-serif;
     font-size: 18px;
+    opacity: 0.5;
+    transition: all 0.4s;
+}
+
+#aboutUs p:hover {
+    opacity: 1;
 }
 
 #contact {
@@ -113,7 +147,7 @@ html {
 }
 
 .ingreso::-webkit-inner-spin-button,
-.ingreso::-webkit-outer-spin-button{
+.ingreso::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
@@ -125,6 +159,7 @@ html {
     outline: none;
     border-bottom: 1px solid #dff2b0;
     margin: 10px 0;
+    resize: none;
 }
 
 .radio {
@@ -132,9 +167,15 @@ html {
     padding: 5px;
 }
 
-#contact .ingresoEmail{
+.radio:focus {
+    outline: 1px solid #333;
+    box-shadow: 0px 0px 5px 3px #333;
+}
+
+#contact .ingresoEmail {
     margin: 0px, 0.625rem, 0px, 0px;
 }
+
 .boton {
     padding: 0.5rem 22vw;
     width: 100%;
@@ -152,14 +193,18 @@ html {
 #contact .boton:hover {
     background-color: #dff2b0;
     color: #000;
+    opacity: .6;
+    border-radius: 50px;
+    box-shadow: 0px 0px 8px 4px #333;
 }
+
 #contact h2 {
     margin: 1.875rem auto 0.625rem auto;
     text-align: center;
 }
 
 
-#ubication{
+#ubication {
     margin: 0.5rem 6.875rem 0 1.875rem;
     grid-area: ubication;
     display: flex;
@@ -167,93 +212,75 @@ html {
     justify-content: center;
     margin: 0 3.125rem 0 1.25rem;
     padding: 0 1.3vw 0 0;
-    font-family: 'lobster';    
+    font-family: 'lobster';
 }
 
 #ubication h2 {
     margin: 1.875rem auto 0.625rem auto;
     text-align: center;
 }
+
 .mapa {
     margin-top: 15px;
-    padding: 0;
+    padding: 3px;
     box-sizing: border-box;  
-    border: 3px solid #dff2b0;
-    box-shadow: 0px 0px 12px 8px #414040d1;
+    border: 3px solid #222;
+    box-shadow: 0px 0px 6px 2px #414040aa;
     border-radius: 15px;
     height: 79.5%;
 }
 
-#footer{
-    grid-area: footer;
-    height: 7vh;
-    margin: 10px;
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: baseline;
-    user-select: none;
+.mapa iframe {
+    filter: invert(93%);
+    border: 1px solid #000;
+    box-shadow: 0px 0px 13px 8px #ede9e9d1;
 }
 
-.social {
+.gridFooter {
+    margin-top: 3vh;
+    grid-area: footer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    padding: 5vh 0;
+}
+
+.gridFooter .social {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-#footer::after {
-    content: "";
-    clear: both;
-    display: block;
-}
-
-[class*="col-"] {
-    float: left;
-}
-
-.col-1 {
-    width: 8.33%;
-}
-
-.col-2 {
-    width: 16.66%;
-}
-
-.col-3 {
+.autoria {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     width: 25%;
+    opacity: 0.3;
 }
 
-.col-4 {
-    width: 33.33%;
+.copyright {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 25%;
+    opacity: 0.3;
 }
 
-.col-5 {
-    width: 41.66%;
+.social a img {
+    width: 40px;
+    transition: all 0.4s;
+    opacity: 0.5;
 }
 
-.col-6 {
-    width: 50%;
-}
-
-.col-7 {
-    width: 58.33%;
-}
-
-.col-8 {
-    width: 66.66%;
-}
-
-.col-9 {
-    width: 75%;
-}
-
-.col-10 {
-    width: 83.33%;
-}
-
-.col-11 {
-    width: 91.66%;
-}
-
-.col-12 {
-    width: 100%;
+.social a img:hover {
+    border-radius: 10px;
+    width: 60px;
+    box-shadow: 0px 0px 8px 4px #333;
+    opacity: 1;
 }
